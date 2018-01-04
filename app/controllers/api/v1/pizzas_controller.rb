@@ -3,7 +3,7 @@ class Api::V1::PizzasController < ApplicationController
 
   def index
     pizzas = Pizza.all
-    render json: pizzas, status: 200
+    render json: pizzas, include: ["comments.user"], status: 200
   end
 
   def create

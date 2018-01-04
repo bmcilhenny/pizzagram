@@ -3,12 +3,12 @@ class Api::V1::UsersController < ApplicationController
 
   def index
     users = User.all
-    render json: users, status: 200
+    render json: users, include:["pizzas.comments"], status: 200
   end
 
   def login
     user = User.find_by(user_params)
-    render json: user, status: 200
+    render json: user, include:["pizzas.comments"], status: 200
   end
 
   def create
@@ -33,7 +33,7 @@ class Api::V1::UsersController < ApplicationController
 
   private
   def user_params
-    params.permit(:name, :email, :profile_pic_url)
+    params.permit(:name, :email, :profile_pic_url, :file_data, :file_name)
   end
 
   def set_user
