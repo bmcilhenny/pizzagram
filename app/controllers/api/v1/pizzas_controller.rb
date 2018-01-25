@@ -7,7 +7,6 @@ class Api::V1::PizzasController < ApplicationController
   end
 
   def create
-
     pizza = Pizza.create(pizza_params)
     render json: pizza, status: 201
   end
